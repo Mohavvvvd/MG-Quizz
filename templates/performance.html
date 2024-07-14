@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='per.css')}}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logos/logo.ico') }}">
+    <title>performance</title>
+</head>
+<body>
+    <h1><span> Welcome {{username}}</span></h1>
+    <div class="nbar" >
+        <div class="per">you are solve this week {{ this_week }} Quiz</div>
+        <div class="per">you rating for this week {{ this_month }}</div>
+        <div class="per">generale rating {{ general_rating }}</div>
+        <div class="per">all quiz you solve {{ all_quizzes_solved }} Quiz</div>
+    </div>
+    <h3>quizz by you</h3>
+    <div class="cont">
+        {% for result in results %}
+                <div class="q"> 
+                    <div class="t"><h3 class="x">{{ result.title }}  </h3><h5 class="y">{{result.level}}</h5></div>
+                    <p> {{ result.description }} </p>
+                    <form action="/delete" method="post">
+                        <input type="hidden" name="id" value="{{ result['_id'] | string }}">
+                        <button type="submit">delete</button>
+                    </form>
+                </div>
+        {% endfor %}
+    </div>
+    <h3>Quiz you solved</h3>
+    <div class="cont">
+        {% for result in resul %}
+                <div class="q"> 
+                    <div class="t"><h3 class="x">{{ result.name }}  </h3><h5 class="y">{{result.level}}</h5></div>
+                    <p> {{ result.description }} <br><br> {{ result.date }}</p>
+                    <p>Score : {{ result.score }} - N° solve: {{result.num}}</p>
+                    <form action="/quizzi" method="post">
+                        <input type="hidden" name="id" value="{{ result['_id'] | string }}">
+                        <button type="submit">Solve it again !</button>
+                    </form>
+                </div>
+        {% endfor %}
+    </div>
+    {% if msg %}
+    <div class="m">
+        <p> {{msg}} </p>
+        <button class="w">OK</button>
+    </div>
+    {% endif %}
+    {% if err %}
+    <div class="e">
+        <p> {{err}} </p>
+        <button class="w">OK</button>
+    </div>
+    {% endif %}
+    <script>
+        const buttons = document.querySelectorAll('.w');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.m, .e').forEach(element => {
+                    element.style.display = "none";
+                });
+            });
+        });
+    </script>
+</body>
+</html>

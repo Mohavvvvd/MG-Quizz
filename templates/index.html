@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Signup</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logos/logo.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="login-form d">
+            <h1><img src="/static/logos/logo.png" alt="" class="log"><br>Login  </h1>
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+            <form action="/login" method="POST">
+                <label for="username">Username:</label>
+                <div class="input-container">
+                    <img src="/static/logos/user.png" alt="" class="input-icon">
+                    <input type="text" id="username" name="username" required placeholder="Username">
+                </div><br><br>
+                <label for="password">Password:</label>
+                <div class="input-container">
+                    <img src="/static/logos/pass.png" alt="" class="input-icon">
+                    <input type="password" id="password" name="password" required placeholder="Password">
+                </div><br><br>
+                <button type="submit">Login</button>
+                <p>You don't have an account yet.<div id="si" class="m"> SingUp now!</div></p>
+            </form>
+        </div>
+        <div class="signup-form hidden d">
+            <h1><img src="/static/logos/logo.png" alt="" class="log"> <br> Sign Up</h1>
+            {% if signup_success %}
+                <p class="success">{{ signup_success }}</p>
+            {% endif %}
+            {% if signup_error %}
+                <p class="error">{{ signup_error }}</p>
+            {% endif %}
+            <form action="/signup" method="POST">
+                <label for="new_username">New Username:</label>
+                <div class="input-container">
+                    <img src="/static/logos/user.png" alt="" class="input-icon">
+                    <input type="text" id="new_username" name="new_username" required placeholder="Username">
+                </div><br><br>
+                <label for="new_password">New Password:</label>
+                <div class="input-container">
+                    <img src="/static/logos/pass.png" alt="" class="input-icon">
+                    <input type="password" id="new_password" name="new_password" required placeholder="Password">
+                </div><br><br>
+                <button type="submit">Sign Up</button>
+                <p>Already have an account!<br><div class="m" id="back">Go to Login.</div></p>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+</body>
+</html>

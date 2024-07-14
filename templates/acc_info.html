@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>acc_info</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='acc.css')}}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logos/logo.ico') }}">
+</head>
+<body>
+    <div class="cont">
+        <H1>Hello , {{ username }} !</H1>
+        <div class="form-container">
+            <form action="/up_pass" method="post" class="form">
+                <h2>Change password ?</h2>
+                {% if succ %}
+                    <p class="success" style="color: green;">{{succ}}</p>
+                {% endif %}
+                {% if error %}
+                    <p class="error" style="color: crimson;">{{error}}</p>
+                {% endif %}
+                <label for="op">Old password:</label>
+                <input type="password" id="op" placeholder="The old password" name="op" required>
+                <label for="np">New password:</label>
+                <input type="password" id="np" placeholder="The new one" name="np" required>
+                <button type="submit">Change</button>
+            </form>
+            <form action="up_name" method="post" class="form">
+                <h2>Change username ?</h2>
+                {% if success %}
+                    <p class="success" style="color: green;">{{success}}</p>
+                {% endif %}
+                {% if errorr %}
+                    <p class="error" style="color: crimson;">{{errorr}}</p>
+                {% endif %}
+                <label for="user">New username:</label>
+                <input type="text" id="user" placeholder="New username" required name="user">
+                <label for="pass">Password:</label>
+                <input type="password" id="pass" placeholder="password" required name="pass">
+                <button type="submit">Change</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='solve.css')}}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logos/logo.ico') }}">
+    <title>solve</title>
+</head>
+<body>
+    <form class="f" action="/search" method="post">
+        <input type="text" name="username" placeholder="username">
+        <select name="level" id="s">
+            <option value="">Select a level</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+            <option value="Legendary">Legendary</option>
+        </select>
+        <select name="order" id="or">
+            <option value="">Select an order</option>
+            <option value="1">Asc</option>
+            <option value="-1">Desc</option>
+        </select>
+        <button type="submit">Search</button>
+    </form>
+    {% if username or level or orde %}
+        <div class="x">Results for: <div class="c">User: {{ username }} </div><div class="c">Level: {{level}} </div><div class="c">Order: {{orde}}</div></div>
+    {% endif %}
+    {% if msg %}
+        <div class="msg">{{msg}} <button class="m">OK</button> </div>
+    {% endif %}   
+    <div class="cont">
+        {% for result in results %}
+                <div class="q"> 
+                    <div class="t"><h3 class="x">{{ result.title }}  </h3><h5 class="y">{{result.level}}</h5></div>
+                    <p> {{ result.description }}</p>
+                    <p>By : {{ result.user }} - {{ result.date }}</p>
+                    <form action="/quizzi" method="post">
+                        <input type="hidden" name="id" value="{{ result['_id'] | string }}">
+                        <button type="submit">Solve it !</button>
+                    </form>
+                </div>
+        {% endfor %}
+
+    </div>
+    
+    <script src="{{url_for('static',filename='slove.js')}}"></script>
+</body>
+</html>

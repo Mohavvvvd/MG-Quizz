@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MgQuizz - {{ username }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logos/logo.ico') }}">
+</head>
+<body>
+    <div class="nav">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <h1><img src="/static/logos/logo.png" alt="" class="log"> MG-Quizz</h1>
+        <ul>
+          <li><a href="/welcome" target="dis"><img src="/static/logos/home.png" alt="" class="logi"> Home</a></li>
+          <li><a href="/performance" target="dis"><img src="/static/logos/performance.png" alt="" class="logi"> Performance</a></li>
+          <li><a href="/solve" target="dis"><img src="/static/logos/quizz.png" alt="" class="logi"> Quiz to solve</a></li>
+          <li><a href="/quiz" target="dis"><img src="/static/logos/add.png" alt="" class="logi"> Add quizz</a></li>
+          <li><a href="/acc_info" target="dis"><img src="/static/logos/info.png" alt="" class="logi"> {{username}} info</a></li>
+          <li><a href="/logout" class="logout"><img src="/static/logos/logout.png" alt="" class="logi"> logout</a></li>
+        </ul>
+      </div>
+      <div class="cont">
+        <iframe src="" frameborder="0" name="dis" width="100%" height="100%"  ></iframe>
+      </div>
+      <script src="{{ url_for('static', filename='nav.js') }}"></script>
+      <script>
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav ul");
+        const navLinks = document.querySelectorAll(".nav li a");
+      
+        hamburger.addEventListener("click", mobileMenu);
+      
+        function mobileMenu() {
+          hamburger.classList.toggle("active");
+          navMenu.classList.toggle("active");
+        }
+      
+        document.addEventListener("click", function(event) {
+          if (!event.target.closest(".nav") &&!event.target.matches("a.logout")) {
+            navMenu.classList.remove("active");
+            hamburger.classList.remove("active");
+          }
+        });
+      </script>
+</body>
+</html>

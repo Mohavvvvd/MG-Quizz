@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>welcome</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='welcome.css')}}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logos/logo.ico') }}">
+</head>
+<body>
+    <form action="/welcome">
+    <div class="a">
+        <img src="/static/logos/logo.png" alt="" class="logo">
+        <h1><span> Welcome {{username}}</span></h1>
+        <p>Welcome to MG-Quizz, your ultimate destination for creating and solving quizzes with ease! Whether you're a quiz enthusiast looking to challenge your friends or an educator wanting to engage your students, our platform offers intuitive tools to craft personalized quizzes. Join a community passionate about knowledge-sharing and interactive learning. Start creating and solving quizzes today to unleash your curiosity and test your skills in a fun and engaging way. Welcome aboard the journey of discovery and exploration with MG-Quizz!</p>
+        <h2>&copy; 2024 MG-Quizz. All rights reserved. Created by <a href="https://mg-productions.netlify.app/" target="_blank">Mohamed Ghoul</a>.</h2>
+    </div>
+</form>
+</body>
+</html>

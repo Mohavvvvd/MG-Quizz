@@ -1,0 +1,127 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("/static/logos/bac.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+  .d{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .container {
+    margin: auto;
+    width: 350px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 500px;
+    background: transparent;
+    backdrop-filter: blur(10px);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #ffffff;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: calc(100% - 50px);
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #136117;
+  }
+  
+  .error {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .success {
+    color: rgb(71, 243, 71);
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .signup-form {
+    transition: display 0.3s; 
+  }
+  .m{
+    color: #05960c;
+    text-shadow: 0px 0px 1px #333;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .i{
+    display: inline-block;
+  }
+  p{
+    color: #ffffff;
+  }
+  label{
+    color: #ffffff;
+  }
+  .log{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  .input-container {
+    position: relative;
+  }
+
+ .input-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+  }
+
+ .input-container input {
+    padding-left: 40px;
+  }

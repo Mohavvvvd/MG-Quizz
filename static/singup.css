@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("/static/logos/bac.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(255, 255, 255, 0.5);       
+    }
+.container{
+    background-color: rgba(255, 255, 255, 0.726);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 300px;
+    width: auto;
+    margin: auto;
+    padding: 20px;
+}
+h1 span {
+    background: linear-gradient(to right, rgb(3, 72, 13) 50%, rgb(16, 216, 40));
+    background-size: 200%;
+    background-position: 0%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background-position 0.6s ease;
+  }
+  h1:hover span {
+    background-position: 100%;
+  }

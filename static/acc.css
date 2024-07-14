@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  
+  .cont {
+    max-width: 100%;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .form h2 {
+    margin-top: 0;
+  }
+  
+  .form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .form input[type="text"],.form input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+  }
+  
+  .form button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .form button[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+  
+  .success {
+    color: green;
+  }
+  
+  .error {
+    color: crimson;
+  }
+  h1{
+    color: #3e8e41;
+    text-align: center;
+    text-indent: 5px;
+  }
+
+  @media (min-width: 1200px) {
+   .cont {
+      max-width: 800px;
+    }
+   .form {
+      padding: 30px;
+    }
+   .form input[type="text"],.form input[type="password"] {
+      max-width: 350px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+   .cont {
+     
+      max-width: 400px;
+    }
+   .form {
+      padding: 20px;
+    }
+   .form input[type="text"],.form input[type="password"] {
+      max-width: 250px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+   .cont {
+      max-width: 300px;
+    }
+   .form {
+      padding: 15px;
+    }
+   .form input[type="text"],.form input[type="password"] {
+      max-width: 200px;
+    }
+  }

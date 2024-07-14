@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Questions</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='qs.css')}}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logos/logo.ico') }}">
+</head>
+<body>
+  <form action="/test" method="post">
+    {% for doc in res %}
+      <h1>{{ doc.title }}</h1>
+      <h2>{{ doc.level }}</h2>
+      <p>{{ doc.description }}</p>
+      <input type="hidden" name="name" value="{{doc.title}}"><input type="hidden" name="lev" value="{{ doc.level}}"><input type="hidden" name="dis" value="{{ doc.description }}">
+      {% for question in doc.questions %}
+        <div class="cont">
+          <h2>{{ question.question }}</h2>
+          <ul>
+            {% set question_index = loop.index0 %}
+            {% for answer in question.answers %}
+              <li><input type="radio" id="{{ loop.index0 }}" name="question_{{ question_index }}" value="{{ loop.index0 }}"><label for="question_{{ question_index }}">{{ answer }}</label></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    {% endfor %}
+    <input type="hidden" name="quiz_id" value="{{ id }}">
+    <button type="submit" > Submit Quiz</button>
+  </form>
+</body>
+</html>

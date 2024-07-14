@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Quiz - {{username}}</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='addQ.css')}}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logos/logo.ico') }}">
+</head>
+<body>
+   <form id="quizForm"  class="f"> 
+    <div class="cont">
+        <input type="text" id="t" required name="title" placeholder="Quizz title">
+        <input type="text" id="d" placeholder="Describtion">
+        <select id="s">
+            <option value="">Select a level</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+            <option value="Legendary">Legendary</option>
+        </select>
+        <input type="number" id="n" required name="n" placeholder="Quizz question number">
+        <button id="btn" type="submit">Start</button> 
+    </div> <br>
+    <div class="quiz-container h"></div><br>
+    <button type="submit" class="h b" id="c">Confirm</button>
+   </form>
+   <script src="{{url_for('static',filename='addQ.js')}}"></script>
+</body>
+</html>
