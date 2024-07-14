@@ -71,7 +71,7 @@ def performance():
         
         for result in res:
             if 'date' in result:
-                date_obj = datetime.strptime(result['date'], '%Y-%m-%d').date()
+                date_obj = datetime.strptime(result['date'], '%Y-%m-%d %H:%M:%S').date()
                 if (date.today() - date_obj).days <= 7:
                     this_week += 1
                 if (date.today() - date_obj).days <= 30:
@@ -209,31 +209,41 @@ def solve_quiz():
     
 @app.route('/test', methods=['POST'])
 def test():
+    user = request.form['us']
     quiz_id = request.form.get('quiz_id')
-    try:
-        quiz_id = ObjectId(quiz_id)
-    except ValueError:
-        return "Invalid quiz_id", 400
-    quiz_data = quiz_collection.find_one({"_id": quiz_id})
-    x = len(quiz_data['questions'])
+    quiz_data = quiz_collection.find_one({"title": quiz_id})
+    
     if quiz_data:
+        x = len(quiz_data['questions'])
         answers = request.form
         score = 0
-        for i, question in enumerate(quiz_data['questions']):
-            user_answer = int(answers.get(f"question_{i}"))
-            correct_index = int(question['correctAnswer'])
-            if user_answer == correct_index:
-                score += 1
-        q = solved_q.find_one({'_id':quiz_id,'user':session['username']})
+        today_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        moy = 0
         
-        moy = (100 /x ) * score
-        if q :
-            solved_q.update_one({'_id': quiz_id, 'user': session['username']}, {'$set': {'score': score, 'date': today_str, 'moy': moy}, '$inc': {'num': 1}})
+        for i, question in enumerate(quiz_data['questions']):
+            user_answer = answers.get(f"question_{i}")
+            if user_answer is not None:
+                user_answer = int(user_answer)
+                correct_index = int(question['correctAnswer'])
+                if user_answer == correct_index:
+                    score += 1
+            else:
+                print(f"User didn't answer question {i}")
+        
+        moy = (100 / x) * score
+        
+        q = solved_q.find_one({'name': quiz_id, 'user': session['username']})
+        
+        if q:
+            solved_q.update_one({'_id': q['_id']}, 
+                                 {'$set': {'score': score, 'date': today_str, 'moy': moy}}, 
+                                 upsert=True)
         else:
-            solved_q.insert_one({'_id':quiz_id,'user':session['username'],'score':score,'name':answers.get('name'),'num':1,'description':answers.get('dis'),'level':answers.get('lev'),'date':today_str,'moy':moy})
+            solved_q.insert_one({'user': session['username'], 'core': score, 'name': quiz_id, 'num': 1, 'description': quiz_data['description'], 'level': quiz_data['level'], 'date': today_str, 'moy': moy})
+        
         msg = f"Your score is {score} out of {len(quiz_data['questions'])}!"
         res = list(quiz_collection.find())
-        return render_template('solve.html', msg=msg,username = None,orde = None , level = None , results = res)
+        return render_template('solve.html', msg=msg, username=None, orde=None, level=None, results=res)
     else:
         return "Quiz not found", 404
 
@@ -257,7 +267,7 @@ def delete():
             
             for result in res:
                 if 'date' in result:
-                    date_obj = datetime.strptime(result['date'], '%Y-%m-%d').date()
+                    date_obj = datetime.strptime(result['date'], '%Y-%m-%d %H:%M:%S').date()
                     if (date.today() - date_obj).days <= 7:
                         this_week += 1
                     if (date.today() - date_obj).days <= 30:

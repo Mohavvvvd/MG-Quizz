@@ -26,7 +26,7 @@
         </div>
       {% endfor %}
     {% endfor %}
-    <input type="hidden" name="quiz_id" value="{{ id }}">
+    <input type="hidden" name="quiz_id" value="{{ res[0].title }}"><input type="hidden" name="us" value="{{ res[0].user}}">
     <button type="submit" > Submit Quiz</button>
   </form>
 </body>
