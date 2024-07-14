@@ -239,7 +239,7 @@ def test():
                                  {'$set': {'score': score, 'date': today_str, 'moy': moy}}, 
                                  upsert=True)
         else:
-            solved_q.insert_one({'user': session['username'], 'core': score, 'name': quiz_id, 'num': 1, 'description': quiz_data['description'], 'level': quiz_data['level'], 'date': today_str, 'moy': moy})
+            solved_q.insert_one({'user': session['username'], 'score': score, 'name': quiz_id, 'num': 1, 'description': quiz_data['description'], 'level': quiz_data['level'], 'date': today_str, 'moy': moy})
         
         msg = f"Your score is {score} out of {len(quiz_data['questions'])}!"
         res = list(quiz_collection.find())
