@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.secret_key = 'secret_key'
 
 # Connect to MongoDB
-client = MongoClient('mongodb+srv://mohavvvvd:9tC552WfPe8gZsA1@cluster0.gpj3fqg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+client = MongoClient('')
 db = client['Quizz']
 users_collection = db['users']
 quiz_collection = db["Aquiz"]  
